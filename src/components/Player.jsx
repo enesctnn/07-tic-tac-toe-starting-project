@@ -1,26 +1,32 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import classes from './Player.module.css';
 
 const Player = ({ name, symbol }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(name);
-  const inputRef = useRef();
 
   const buttonClickHandler = () => {
-    setIsEditing((prevStat) => {
-      return !prevStat;
-    });
-    if (isEditing) {
-      setPlayerName(inputRef.current.value);
-    }
+    setIsEditing((prevStat) => !prevStat);
   };
+
+  const inputChangeHandler = (event) => {
+    setPlayerName(event.target.value);
+  };
+
   return (
     <li>
-      <span className={classes['player-info']}>
+      <span className={classes['player']}>
         {!isEditing && (
           <span className={classes['player-name']}>{playerName}</span>
         )}
-        {isEditing && <input type="text" ref={inputRef} />}
+        {isEditing && (
+          <input
+            type="text"
+            required
+            onChange={inputChangeHandler}
+            value={playerName}
+          />
+        )}
         <span className={classes['player-symbol']}>{symbol}</span>
       </span>
       {!isEditing && <button onClick={buttonClickHandler}>Edit</button>}

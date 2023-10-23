@@ -35,3 +35,15 @@
   font-size: 1rem;
   color: #e1dec7;
 }
+
+@keyframes pulse-text {
+  0% {
+    color: #e1dec7;
+  }
+  50% {
+    color: #9f9d83;
+  }
+  100% {
+    color: #e1dec7;
+  }
+}
