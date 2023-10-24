@@ -4,6 +4,7 @@ const useScore = (gameBoard) => {
   const scoreTable = {
     playerX: 0,
     playerO: 0,
+    winner: '',
   };
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
@@ -18,6 +19,7 @@ const useScore = (gameBoard) => {
       firstSquareSymbol === thirdSquareSymbol
     ) {
       firstSquareSymbol === 'X' ? scoreTable.playerX++ : scoreTable.playerO++;
+      scoreTable.winner = firstSquareSymbol;
     }
   }
   return scoreTable;

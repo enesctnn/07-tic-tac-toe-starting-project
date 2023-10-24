@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useScore from './useScore';
 
 const initialGameBoard = [
   [null, null, null],
@@ -11,6 +10,12 @@ const useGameUtils = () => {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   const [move, setMove] = useState('X');
   const [playerMoves, setPlayerMoves] = useState([]);
+
+  const resetGame = () => {
+    setGameBoard(initialGameBoard);
+    setMove('X');
+    setPlayerMoves([]);
+  };
 
   const playerMoveHandler = (rowIndex, colIndex, move) => {
     setGameBoard((prevGameBoard) => {
@@ -38,7 +43,7 @@ const useGameUtils = () => {
     });
   };
 
-  return { playerMoveHandler, gameBoard, move, playerMoves };
+  return { playerMoveHandler, gameBoard, move, playerMoves, resetGame };
 };
 
 export default useGameUtils;
