@@ -1,20 +1,18 @@
 import styles from './GameBoard.module.css';
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const GameBoard = () => {
+const GameBoard = ({ move, playerMoveHandler, gameBoard }) => {
   return (
     <ol id={styles['game-board']}>
-      {initialGameBoard.map((row, rowIndex) => (
+      {gameBoard.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button>{playerSymbol}</button>
+                <button
+                  onClick={() => playerMoveHandler(rowIndex, colIndex, move)}
+                >
+                  {playerSymbol}
+                </button>
               </li>
             ))}
           </ol>
