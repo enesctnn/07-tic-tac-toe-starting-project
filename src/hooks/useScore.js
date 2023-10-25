@@ -1,11 +1,8 @@
 import { WINNING_COMBINATIONS } from '../winning-combinations';
 
 const useScore = (gameBoard) => {
-  const scoreTable = {
-    playerX: 0,
-    playerO: 0,
-    winner: '',
-  };
+  let winner;
+
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
       gameBoard[combination[0].row][combination[0].column];
@@ -18,11 +15,12 @@ const useScore = (gameBoard) => {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      firstSquareSymbol === 'X' ? scoreTable.playerX++ : scoreTable.playerO++;
-      scoreTable.winner = firstSquareSymbol;
+      winner = firstSquareSymbol;
+      break;
     }
   }
-  return scoreTable;
+
+  return winner;
 };
 
 export default useScore;

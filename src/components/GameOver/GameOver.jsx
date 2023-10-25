@@ -1,11 +1,7 @@
 import styles from './GameOver.module.css';
 
-export default function GameOver({ scoreTable, onRematch }) {
-  const message = !scoreTable.winner ? (
-    <p>It's Draw!</p>
-  ) : (
-    <p>{scoreTable.winner} You won!</p>
-  );
+export default function GameOver({ onRematch, winner, playerWon }) {
+  const message = !winner ? <p>It's Draw!</p> : <p>{playerWon} You won!</p>;
 
   return (
     <div id={styles['game-over']}>
